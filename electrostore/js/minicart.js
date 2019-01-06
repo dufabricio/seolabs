@@ -2873,7 +2873,7 @@ View.prototype.bind = function bind(form) {
     // GA META - Sucess Submit
 
     let eventValue=0;
-    that.model.cart.items.forEach(product => {
+    that.model.cart.items().forEach(product => {
       eventValue+=product.amount;
     });
 
