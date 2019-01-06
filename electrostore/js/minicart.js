@@ -2870,9 +2870,14 @@ View.prototype.bind = function bind(form) {
         });
     }
 
-    // Sucess Submit
+    // GA META - Sucess Submit
 
-    ga('send', 'event', 'Clique', 'Checkout');
+    let eventValue=0;
+    that.model.cart.items.forEach(product => {
+      eventValue+=product.amount;
+    });
+
+    ga('send', 'event', 'Clique', 'Checkout','Compra de Produto',eventValue);
     console.log("Disparar evento analytics");
     //return true;
 };
