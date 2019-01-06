@@ -2100,13 +2100,37 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				evt.preventDefault();
 			}
 
-				// GA META - Sucess Submit
+			// GA META - Sucess Submit
 			// Count the number of each item in the cart
-			let eventValue=0;
-			items.forEach((product)=>{eventValue += product.total();});
-			console.log("ga('send', 'event', 'Clique', 'Checkout','Compra de Produto',",eventValue);
 			ga('send', 'event', 'Clique', 'Checkout','Compra de Produto');
 			evt.preventDefault();
+
+			// GA Comercio Eletronico Avancado
+			console.log("GA Comercio Eletronico Avancado",eventValue);
+	
+			ga('ecommerce:addTransaction', {
+				'id': '1234',                     // Transaction ID. Required.
+				'affiliation': 'Eletronic Store',   // Affiliation or store name.
+				'revenue': '11.99',               // Grand Total.
+				'shipping': '5',                  // Shipping.
+				'tax': '1.29'                     // Tax.
+			});
+
+			let eventValue=0;
+			items.forEach((product)=>{
+				eventValue += product.total();
+				ga('ecommerce:addItem', {
+					'id': '1234',                     // Transaction ID. Required.
+					'name': product.item_name(),    // Product name. Required.
+					'sku': 'DD23444',                 // SKU/code.
+					'category': 'Celular',         // Category or variation.
+					'price': product.amount(),                 // Unit price.
+					'quantity': product.quantity()                   // Quantity.
+				});
+			});
+			
+			ga('ecommerce:send');
+
 
 		});
 
