@@ -2083,13 +2083,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				evt.preventDefault();
 			}
 
-			// GA META - Sucess Submit
+				// GA META - Sucess Submit
 			// Count the number of each item in the cart
 			let eventValue=0;
-			for (i = 0; i < len; i++) {
-				eventValue += items[i].get('total');
-			}
+			items.forEach((product)=>{eventValue += product.total();});
+			console.log("ga('send', 'event', 'Clique', 'Checkout','Compra de Produto',",eventValue);
 			ga('send', 'event', 'Clique', 'Checkout','Compra de Produto',eventValue);
+			evt.preventDefault();
 
 		});
 	</script>
