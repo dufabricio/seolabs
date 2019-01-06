@@ -1473,7 +1473,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			let eventValue=0;
 			items.forEach((product)=>{eventValue += product.total();});
 			console.log("ga('send', 'event', 'Clique', 'Checkout','Compra de Produto',",eventValue);
-			ga('send', 'event', 'Clique', 'Checkout','Compra de Produto',eventValue);
+			ga('send', 'event', 'Clique', 'Checkout','Compra de Produto');
 			evt.preventDefault();
 		});
 	</script>
