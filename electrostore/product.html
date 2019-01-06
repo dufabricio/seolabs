@@ -2104,11 +2104,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				eventValue += product.total();
 				ga('ecommerce:addItem', {
 					'id': '1234',                     // Transaction ID. Required.
-					'name': product.item_name(),    // Product name. Required.
+					'name': product.get("item_name"),    // Product name. Required.
 					'sku': 'DD23444',                 // SKU/code.
 					'category': 'Celular',         // Category or variation.
 					'price': product.amount(),                 // Unit price.
-					'quantity': product.quantity()                   // Quantity.
+					'quantity': product.get('quantity')                   // Quantity.
 				});
 			});
 			
