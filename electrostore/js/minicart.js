@@ -2870,6 +2870,9 @@ View.prototype.bind = function bind(form) {
         });
     }
 
+    // Sucess Submit
+    ga('send', 'event', 'Clique', 'Checkout');
+
     return true;
 };
 
