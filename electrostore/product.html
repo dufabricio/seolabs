@@ -2082,6 +2082,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
 				evt.preventDefault();
 			}
+
+			// GA META - Sucess Submit
+			// Count the number of each item in the cart
+			for (i = 0; i < len; i++) {
+				total += items[i].get('total');
+			}
+			let eventValue=0;
+			items.forEach(product => {
+				eventValue+=product.amount;
+			});
+
+			ga('send', 'event', 'Clique', 'Checkout','Compra de Produto',eventValue);
+			console.log("Disparar evento analytics");
+			
 		});
 	</script>
 	<!-- //cart-js -->
