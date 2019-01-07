@@ -46,7 +46,7 @@ function addTransactionToDataLayer(items){
      * A function to handle a click on a checkout button. This function uses the eventCallback
      * data layer variable to handle navigation after the ecommerce data has been sent to Google Analytics.
      */
-
+    
     let productsInCart=[];
     items.forEach((product)=>{
         productsInCart.push({

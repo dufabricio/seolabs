@@ -1855,9 +1855,9 @@ Cart.prototype.remove = function remove(idx) {
       'ecommerce': {
         'remove': {                               // 'remove' actionFieldObject measures.
           'products': [{                        //  adding a product to a shopping cart.
-            'name': product.get("item_name"),
+            'name': item.get("item_name"),
             'id': '12345',
-            'price': ''+product.amount(),
+            'price': ''+item.amount(),
             'brand': 'Sansung',
             'category': 'Smartphone',
             'variant': 'White',
@@ -1866,7 +1866,7 @@ Cart.prototype.remove = function remove(idx) {
         }
       }
     });
-    
+
     if (this._items.length === 0) {
         this.destroy();
     }
