@@ -53,22 +53,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	    rel="stylesheet">
 	<!-- //web fonts -->
 
+	<!-- DataLayer -->
+<script src="js/datalayer.js"></script>
+
 </head>
 
 <body>
-<!-- DataLayer -->
+
 <script>
-		window.dataLayer = window.dataLayer || [];
-		window.dataLayer.push(
-		  {
-			"page": 
-					{
-					  "title": "Electro Store",
-					  "category": "Single 2"
-					}
-		  }
-		);
+	initPageToDataLayer("Electro Store","Product Details - Single 2");
 </script>
+
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KNFQ6GB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
@@ -1456,6 +1451,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</script>
 	<!-- //popup modal (for location)-->
 
+	<script>
+			addViewProductToDataLayer();
+	</script>
+
 	<!-- cart-js -->
 	<script src="js/minicart.js"></script>
 	<script>
@@ -1477,37 +1476,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				evt.preventDefault();
 			}
 
-			// GA META - Sucess Submit
-			// Count the number of each item in the cart
-			ga('send', 'event', 'Clique', 'Checkout','Compra de Produto');
-			evt.preventDefault();
-
-			// GA Comercio Eletronico Avancado
-			console.log("GA Comercio Eletronico Avancado");
-	
-			ga('ecommerce:addTransaction', {
-				'id': '1234',                     // Transaction ID. Required.
-				'affiliation': 'Eletronic Store',   // Affiliation or store name.
-				'revenue': '11.99',               // Grand Total.
-				'shipping': '5',                  // Shipping.
-				'tax': '1.29'                     // Tax.
-			});
-
-			let eventValue=0;
-			items.forEach((product)=>{
-				eventValue += product.total();
-				ga('ecommerce:addItem', {
-					'id': '1234',                     // Transaction ID. Required.
-					'name': product.get("item_name"),    // Product name. Required.
-					'sku': 'DD23444',                 // SKU/code.
-					'category': 'Celular',         // Category or variation.
-					'price': product.amount(),                 // Unit price.
-					'quantity': product.get('quantity')                   // Quantity.
-				});
-			});
-			
-			ga('ecommerce:send');
-
+			addTransactionToDataLayer(items);
 
 		});
 	</script>

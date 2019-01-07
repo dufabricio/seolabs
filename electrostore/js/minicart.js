@@ -1733,6 +1733,26 @@ Cart.prototype.add = function add(data) {
         this.fire('add', idx, product, isExisting);
     }
 
+    // Measure adding a product to a shopping cart by using an 'add' actionFieldObject
+    // and a list of productFieldObjects.
+    dataLayer.push({
+      'event': 'addToCart',
+      'ecommerce': {
+        'currencyCode': 'USD',
+        'add': {                                // 'add' actionFieldObject measures.
+          'products': [{                        //  adding a product to a shopping cart.
+            'name': product.get("item_name"),
+            'id': '12345',
+            'price': ''+product.amount(),
+            'brand': 'Sansung',
+            'category': 'Smartphone',
+            'variant': 'White',
+            'quantity': 1
+          }]
+        }
+      }
+    });
+
     return idx;
 };
 
@@ -1829,6 +1849,24 @@ Cart.prototype.total = function total(config) {
 Cart.prototype.remove = function remove(idx) {
     var item = this._items.splice(idx, 1);
 
+    // Measure the removal of a product from a shopping cart.
+    dataLayer.push({
+      'event': 'removeFromCart',
+      'ecommerce': {
+        'remove': {                               // 'remove' actionFieldObject measures.
+          'products': [{                        //  adding a product to a shopping cart.
+            'name': product.get("item_name"),
+            'id': '12345',
+            'price': ''+product.amount(),
+            'brand': 'Sansung',
+            'category': 'Smartphone',
+            'variant': 'White',
+            'quantity': 1
+          }]
+        }
+      }
+    });
+    
     if (this._items.length === 0) {
         this.destroy();
     }
