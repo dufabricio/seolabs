@@ -36,34 +36,39 @@ function addViewProductToDataLayer(){
 function addTransactionToDataLayer(items){
 
     // GA META - Sucess Submit
-        // Count the number of each item in the cart
-        ga('send', 'event', 'Clique', 'Checkout','Compra de Produto');
-        evt.preventDefault();
+    // Count the number of each item in the cart
+    ga('send', 'event', 'Clique', 'Checkout','Compra de Produto');
+    
+    // GA Comercio Eletronico Avancado
+    console.log("GA Comercio Eletronico Avancado");
 
-        // GA Comercio Eletronico Avancado
-        console.log("GA Comercio Eletronico Avancado");
+    /**
+     * A function to handle a click on a checkout button. This function uses the eventCallback
+     * data layer variable to handle navigation after the ecommerce data has been sent to Google Analytics.
+     */
 
-        ga('ecommerce:addTransaction', {
+    let productsInCart=[];
+    items.forEach((product)=>{
+        productsInCart.push({
             'id': '1234',                     // Transaction ID. Required.
-            'affiliation': 'Eletronic Store',   // Affiliation or store name.
-            'revenue': '11.99',               // Grand Total.
-            'shipping': '5',                  // Shipping.
-            'tax': '1.29'                     // Tax.
+            'name': product.get("item_name"),    // Product name. Required.
+            'sku': 'DD23444',                 // SKU/code.
+            'category': 'Celular',         // Category or variation.
+            'price': product.amount(),                 // Unit price.
+            'quantity': product.get('quantity')                   // Quantity.
         });
+    });
 
-        let eventValue=0;
-        items.forEach((product)=>{
-            eventValue += product.total();
-            ga('ecommerce:addItem', {
-                'id': '1234',                     // Transaction ID. Required.
-                'name': product.get("item_name"),    // Product name. Required.
-                'sku': 'DD23444',                 // SKU/code.
-                'category': 'Celular',         // Category or variation.
-                'price': product.amount(),                 // Unit price.
-                'quantity': product.get('quantity')                   // Quantity.
-            });
-        });
-        
-        ga('ecommerce:send');
-
+    dataLayer.push({
+    'event': 'checkout',
+    'ecommerce': {
+        'checkout': {
+        'actionField': {'step': 1, 'option': 'Visa'},
+        'products': productsInCart
+    }
+    },
+    'eventCallback': function() {
+        document.location = 'checkout.html';
+    }
+    });
 }
