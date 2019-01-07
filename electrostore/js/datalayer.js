@@ -19,6 +19,7 @@ function addViewProductToDataLayer(){
     dataLayer.push({
         'ecommerce': {
             'detail': {
+            'eventLabel':'Detalhes do Produto',
             'actionField': {'list': 'Home Page Product List'},    // 'detail' actions have an optional list property.
             'products': [{
                 'name': 'Sansung Galaxy J7',       // Name or ID is required.
@@ -46,7 +47,7 @@ function addTransactionToDataLayer(items){
      * A function to handle a click on a checkout button. This function uses the eventCallback
      * data layer variable to handle navigation after the ecommerce data has been sent to Google Analytics.
      */
-    
+
     let productsInCart=[];
     items.forEach((product)=>{
         productsInCart.push({
@@ -61,6 +62,7 @@ function addTransactionToDataLayer(items){
 
     dataLayer.push({
     'event': 'checkout',
+    'eventLabel':'Compra Finalizada',
     'ecommerce': {
         'checkout': {
         'actionField': {'step': 1, 'option': 'Visa'},

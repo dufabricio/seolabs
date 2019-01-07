@@ -1737,6 +1737,7 @@ Cart.prototype.add = function add(data) {
     // and a list of productFieldObjects.
     dataLayer.push({
       'event': 'addToCart',
+      'eventLabel':'Adicionar ao Carrinho',
       'ecommerce': {
         'currencyCode': 'USD',
         'add': {                                // 'add' actionFieldObject measures.
@@ -1854,8 +1855,9 @@ Cart.prototype.remove = function remove(idx) {
     // Measure the removal of a product from a shopping cart.
     dataLayer.push({
       'event': 'removeFromCart',
+      'eventLabel':'Remover do Carrinho',
       'ecommerce': {
-        'remove': {                               // 'remove' actionFieldObject measures.
+        'remove': {                             // 'remove' actionFieldObject measures.
           'products': [{                        //  adding a product to a shopping cart.
             'name': product.get("item_name"),
             'id': '12345',
