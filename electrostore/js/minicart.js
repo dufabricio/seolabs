@@ -10,16 +10,6 @@
 
 ;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 
-
-function guid() {
-    function s4() {
-      return Math.floor((1 + Math.random()) * 0x10000)
-        .toString(16)
-        .substring(1);
-    }
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-}
-
 //
 // The shims in this file are not fully implemented shims for the ES5
 // features, but do work for the particular usecases there is in
@@ -1742,6 +1732,15 @@ Cart.prototype.add = function add(data) {
         this.fire('add', idx, product, isExisting);
     }
 
+    let guid = function() {
+      function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+          .toString(16)
+          .substring(1);
+      }
+      return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+   }
+   
     // Measure adding a product to a shopping cart by using an 'add' actionFieldObject
     // and a list of productFieldObjects.
     dataLayer.push({
@@ -1861,6 +1860,15 @@ Cart.prototype.remove = function remove(idx) {
 
     let product = this.items()[idx];
     
+    let guid = function() {
+      function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+          .toString(16)
+          .substring(1);
+      }
+      return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+     }
+  
     // Measure the removal of a product from a shopping cart.
     dataLayer.push({
       'event': 'removeFromCart',
