@@ -1,3 +1,12 @@
+function guid() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+}
+
 function initPageToDataLayer(title, category){
 
     window.dataLayer = window.dataLayer || [];
@@ -23,8 +32,8 @@ function addViewProductToDataLayer(){
             'actionField': {'list': 'Home Page Product List'},    // 'detail' actions have an optional list property.
             'products': [{
                 'name': 'Sansung Galaxy J7',       // Name or ID is required.
-                'id': '12345',
-                'price': '200.00',
+                'id': guid(),
+                'price': 200.00,
                 'brand': 'Sansung',
                 'category': 'Smartphone',
                 'variant': 'White'
@@ -33,6 +42,7 @@ function addViewProductToDataLayer(){
             }
         });
 }
+
 
 function addTransactionToDataLayer(items){
     
@@ -44,7 +54,7 @@ function addTransactionToDataLayer(items){
     let productsInCart=[];
     items.forEach((product)=>{
         productsInCart.push({
-            'id': '1234',                     // Transaction ID. Required.
+            'id': guid(),                     // Transaction ID. Required.
             'name': product.get("item_name"),    // Product name. Required.
             'sku': 'DD23444',                 // SKU/code.
             'category': 'Celular',         // Category or variation.
