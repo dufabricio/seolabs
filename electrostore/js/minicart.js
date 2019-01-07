@@ -1847,17 +1847,19 @@ Cart.prototype.total = function total(config) {
  * @return {boolean}
  */
 Cart.prototype.remove = function remove(idx) {
-    var item = this._items.splice(idx, 1);
 
+
+    let product = this.items().get(idx);
+    
     // Measure the removal of a product from a shopping cart.
     dataLayer.push({
       'event': 'removeFromCart',
       'ecommerce': {
         'remove': {                               // 'remove' actionFieldObject measures.
           'products': [{                        //  adding a product to a shopping cart.
-            'name': item.get("item_name"),
+            'name': product.get("item_name"),
             'id': '12345',
-            'price': ''+item.amount(),
+            'price': ''+product.amount(),
             'brand': 'Sansung',
             'category': 'Smartphone',
             'variant': 'White',
@@ -1866,6 +1868,9 @@ Cart.prototype.remove = function remove(idx) {
         }
       }
     });
+
+
+    var item = this._items.splice(idx, 1);
 
     if (this._items.length === 0) {
         this.destroy();
