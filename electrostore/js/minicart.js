@@ -1849,7 +1849,7 @@ Cart.prototype.total = function total(config) {
 Cart.prototype.remove = function remove(idx) {
 
 
-    let product = this.items().get(idx);
+    let product = this.items()[idx];
     
     // Measure the removal of a product from a shopping cart.
     dataLayer.push({
