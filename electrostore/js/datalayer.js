@@ -35,14 +35,7 @@ function addViewProductToDataLayer(){
 }
 
 function addTransactionToDataLayer(items){
-
-    // GA META - Sucess Submit
-    // Count the number of each item in the cart
-    ga('send', 'event', 'Clique', 'Checkout','Compra de Produto');
     
-    // GA Comercio Eletronico Avancado
-    console.log("GA Comercio Eletronico Avancado");
-
     /**
      * A function to handle a click on a checkout button. This function uses the eventCallback
      * data layer variable to handle navigation after the ecommerce data has been sent to Google Analytics.
@@ -61,16 +54,16 @@ function addTransactionToDataLayer(items){
     });
 
     dataLayer.push({
-    'event': 'checkout',
-    'eventLabel':'Compra Finalizada',
-    'ecommerce': {
-        'checkout': {
-        'actionField': {'step': 1, 'option': 'Visa'},
-        'products': productsInCart
-    }
-    },
-    'eventCallback': function() {
-        document.location = 'checkout.html';
-    }
+        'event': 'checkout',
+        'eventLabel':'Compra Finalizada',
+        'ecommerce': {
+            'checkout': {
+                'actionField': {'step': 1, 'option': 'Visa'},
+                'products': productsInCart
+            }
+        },
+        'eventCallback': function() {
+            document.location = 'checkout.html';
+        }
     });
 }
