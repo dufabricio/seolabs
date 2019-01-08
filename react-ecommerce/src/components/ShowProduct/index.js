@@ -11,15 +11,15 @@ class ShowProduct extends Component {
 
   changeDataLayer(product){
 
-    // Measure a view of product details. This example assumes the detail view occurs on pageload,
+    // Measureqin a view of product details. This example assumes the detail view occurs on pageload,
     // and also tracks a standard pageview of the details page.
-    dataLayer.push({
+    window.dataLayer.push({
       'ecommerce': {
           'detail': {
           'eventLabel':'Detalhes do Produto',
           'products': [{
               'name': product.name,       // Name or ID is required.
-              'id': guid(),
+              'id': window.guid(),
               'price': product.price,
               'brand': product.brand,
               'category': product.category,
@@ -38,7 +38,7 @@ class ShowProduct extends Component {
      * data layer variable to handle navigation after the ecommerce data has been sent to Google Analytics.
      */
 
-    dataLayer.push({
+    window.dataLayer.push({
         'event': 'checkout',
         'eventLabel':'Compra Finalizada',
         'ecommerce': {
@@ -46,7 +46,7 @@ class ShowProduct extends Component {
                 'actionField': {'step': 1, 'option': 'Visa'},
                 'products': [
                   {
-                    'id': guid(),                     // Transaction ID. Required.
+                    'id': window.guid(),                     // Transaction ID. Required.
                     'name': product.name,    // Product name. Required.
                     'sku': 'DD23444',                 // SKU/code.
                     'category': product.category,         // Category or variation.
