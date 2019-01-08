@@ -38,25 +38,22 @@ class ShowProduct extends Component {
      * data layer variable to handle navigation after the ecommerce data has been sent to Google Analytics.
      */
 
-    let productsInCart=[];
-    items.forEach((product)=>{
-        productsInCart.push({
-            'id': guid(),                     // Transaction ID. Required.
-            'name': product.name,    // Product name. Required.
-            'sku': 'DD23444',                 // SKU/code.
-            'category': product.category,         // Category or variation.
-            'price': product.price,                 // Unit price.
-            'quantity': 1                   // Quantity.
-        });
-    });
-
     dataLayer.push({
         'event': 'checkout',
         'eventLabel':'Compra Finalizada',
         'ecommerce': {
             'checkout': {
                 'actionField': {'step': 1, 'option': 'Visa'},
-                'products': productsInCart
+                'products': [
+                  {
+                    'id': guid(),                     // Transaction ID. Required.
+                    'name': product.name,    // Product name. Required.
+                    'sku': 'DD23444',                 // SKU/code.
+                    'category': product.category,         // Category or variation.
+                    'price': product.price,                 // Unit price.
+                    'quantity': 1                   // Quantity.
+                  }
+                ]
             }
         },
         'eventCallback': function() {
