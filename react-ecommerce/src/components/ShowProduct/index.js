@@ -20,7 +20,7 @@ class ShowProduct extends Component {
           'products': [{
               'name': product.name,       // Name or ID is required.
               'id': guid(),
-              'price': 200.00,
+              'price': product.price,
               'brand': product.brand,
               'category': product.category,
               'variant': 'White'
