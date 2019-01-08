@@ -36,6 +36,16 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React E-Commerce</title>
+    <script>
+      guid = function() {
+          function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+              .toString(16)
+              .substring(1);
+          }
+          return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+      }
+    </script>
   </head>
   <body>
 
