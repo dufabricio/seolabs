@@ -1,5 +1,5 @@
 //Dependencies
-import React from 'react';
+import React, { Component } from 'react';
 //Internals
 import MenItems from './MenItems';
 import './index.css';
