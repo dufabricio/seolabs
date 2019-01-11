@@ -5,66 +5,27 @@ import { Link } from 'react-router-dom';
 import { Icon } from 'react-materialize';
 //Internals
 import PRODUCTS from '../Data';
+import { loadProductAction } from './actions';
 import './index.css';
 
 class ShowProduct extends Component {
 
-  /*
-  changeDataLayer(product){
-
-    // Measureqin a view of product details. This example assumes the detail view occurs on pageload,
-    // and also tracks a standard pageview of the details page.
-    window.dataLayer.push({
-      'ecommerce': {
-          'detail': {
-          'eventLabel':'Detalhes do Produto',
-          'products': [{
-              'name': product.name,       // Name or ID is required.
-              'id': window.guid(),
-              'price': product.price,
-              'brand': product.brand,
-              'category': product.category,
-              'variant': 'White'
-              }]
-          }
-          }
-      });
-
+  componentDidMount () {
+    console.log("ShowProduct : componentDidMount ! this.props.match.params.id",this.props.match.params.id);
+     let id = parseInt(this.props.match.params.id);
+     loadProductAction(id);
   }
 
-  addToCart (product) {
-
-    
-    window.dataLayer.push({
-        'event': 'checkout',
-        'eventLabel':'Compra Finalizada',
-        'ecommerce': {
-            'checkout': {
-                'actionField': {'step': 1, 'option': 'Visa'},
-                'products': [
-                  {
-                    'id': window.guid(),                     // Transaction ID. Required.
-                    'name': product.name,    // Product name. Required.
-                    'sku': 'DD23444',                 // SKU/code.
-                    'category': product.category,         // Category or variation.
-                    'price': product.price,                 // Unit price.
-                    'quantity': 1                   // Quantity.
-                  }
-                ]
-            }
-        },
-        'eventCallback': function() {
-            document.location = '#';
-        }
-    });
+  componentDidUpdate (){
+    console.log("ShowProduct : componentDidUpdate ! this.props.match.params.id",this.props.match.params.id);
+    let id = parseInt(this.props.match.params.id);
+    loadProductAction(id);
   }
-  */
 
   render () {
+    console.log("ShowProduct : render ! this.props.match.params.id",this.props.match.params.id);
     const product = find(PRODUCTS, ['id', parseInt(this.props.match.params.id)]);
     const currentProduct = product;
-
-    //this.changeDataLayer(product);
 
     return (
       <div className="show-product">
