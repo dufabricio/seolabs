@@ -15,6 +15,26 @@ import Accessories from './components/Accessories';
 import ShowProduct from './components/ShowProduct';
 import registerServiceWorker from './registerServiceWorker';
 
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import createSagaMiddleware from 'redux-saga';
+
+/* Enabled Redux and Saga Middleware */
+
+import rootReducer from './reducers';
+import sagas from './sagas';
+
+const sagaMiddleware = createSagaMiddleware();
+const middlewares = [sagaMiddleware];
+const store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  applyMiddleware(...middlewares)
+);
+sagaMiddleware.run(sagas);
+
+/* Configure Routes */
+
 ReactDOM.render(
   <BrowserRouter>
     <BaseLayout>

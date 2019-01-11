@@ -1,4 +1,4 @@
-import {LOAD_PRODUCT_COMPLETE} from './actions'
+import {LOAD_PRODUCT, LOAD_PRODUCT_COMPLETE} from './actions'
 
 const showProductReducer = (state = { data: {}, status: {} }, action) => {
     switch (action.type) {
@@ -16,6 +16,7 @@ const showProductReducer = (state = { data: {}, status: {} }, action) => {
           ...state,
           product: action.product,
           loading: false,
+          failure: false
         };
       default:
         return state;

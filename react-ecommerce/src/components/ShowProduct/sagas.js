@@ -1,5 +1,5 @@
 import { put, takeEvery } from 'redux-saga/effects';
-import { LOAD_PRODUCT } from './actions';
+import { LOAD_PRODUCT, LOAD_PRODUCT_COMPLETE } from './actions';
 import { CLIENT_ID, BASE_API_URL } from '../../config';
 import PRODUCTS from '../Data';
 
@@ -14,11 +14,11 @@ export function* loadProductHandler(action) {
             'detail': {
             'eventLabel':'Detalhes do Produto',
             'products': [{
-                'name': product.name,       // Name or ID is required.
+                'name': currentProduct.name,       // Name or ID is required.
                 'id': window.guid(),
-                'price': product.price,
-                'brand': product.brand,
-                'category': product.category,
+                'price': currentProduct.price,
+                'brand': currentProduct.brand,
+                'category': currentProduct.category,
                 'variant': 'White'
                 }]
             }
@@ -31,9 +31,9 @@ export function* loadProductHandler(action) {
 
 }
 
-export default [
-  takeEvery(LOAD_PRODUCT, loadProductHandler)
-];
+export default function* ShowProductSaga() {
+  takeEvery(LOAD_PRODUCT, loadProductHandler);
+}
 
   /*    
     window.dataLayer.push({
